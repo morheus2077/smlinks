@@ -4,7 +4,7 @@ import { Button } from "../../components/Button";
 import { useState, type FormEvent } from "react";
 import {auth} from  '../../services/firebaseConnection';
 import { signInWithEmailAndPassword } from "firebase/auth/cordova";
-import { replace, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 export function Login(){
 
