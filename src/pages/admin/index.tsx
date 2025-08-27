@@ -12,8 +12,6 @@ import
      onSnapshot,
      query,
      orderBy,
-     doc,
-     deleteDoc 
 } from "firebase/firestore";
 
 interface LinkProps{
@@ -50,7 +48,7 @@ export function Admin(){
                   bg: doc.data().bg
             }) 
         })
-        
+            console.log(unsub)
           console.log(allLinks)
           setLinksList(allLinks)
        } )
