@@ -12,6 +12,8 @@ import
      onSnapshot,
      query,
      orderBy,
+     deleteDoc,
+     doc
 } from "firebase/firestore";
 
 interface LinkProps{
@@ -56,7 +58,6 @@ export function Admin(){
       
     },[]);
 
-
      function handleRegister(e: FormEvent){
         e.preventDefault();
 
@@ -84,10 +85,20 @@ export function Admin(){
         })
     }
 
+    function handleDelete(item: string){
+        deleteDoc(doc(db, "links", item))
+        .then(() =>{
+            alert("Link excluido com sucesso!");
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+
     return(
         <>
        <Header/>
-        <div className="h-screen flex justify-center bg-[#030129]">
+        <div className="h-screen flex flex-col  items-center bg-[#030129]">
         <form onSubmit={handleRegister} className="w-[360px] md:w-[700px] lg:w-[500px] " action="">
             <div className="flex flex-col px-4 lg:px-0 ">
                     <label className="pt-6 md:text-xl lg:text-lg" htmlFor="name">Nome do link</label>
@@ -158,34 +169,32 @@ export function Admin(){
             cadastrar 
             <i><Link size={18}/></i>
             </button>
-            
-            <div className="mt-14 md:text-3xl flex flex-col items-center justify-center">
+        </form>
+
+        <div className="mt-8 md:text-3xl flex flex-col items-center w-[360px] md:w-[700px] lg:w-[500px]  justify-center">
                 <h1>Meus Links</h1>
                 <div className="lg:w-full mt-5 flex flex-col gap-3">
                     {linksList.map((link)=>(
                         <>
-                        <article
+                <article
                         style={{background: link.bg}}
                         key={link.id}
                         className="h-[35px] rounded-sm w-[330px] md:w-[600px] lg:w-full flex items-center justify-between px-5 lg:text-lg  "
                         >
                     <p
-                    style={{color: link.color}}
+                        style={{color: link.color}}
                     >
-                        {link.name}
+                    {link.name}
                     </p>
                     <div>
-                        <button className="border border-dashed rounded-sm p-1 cursor-pointer hover:bg-white hover:text-red-600 ">
-                            <i><Trash size={20}/></i></button>
-                        </div>
+                    <button onClick={() => handleDelete(link.id)} className="border  border-dashed rounded-sm p-1 cursor-pointer hover:bg-white hover:text-red-600 ">
+                    <i><Trash size={20}/></i></button>
+                    </div>
                 </article> 
                         </>
                     ))}
-                
                 </div>
             </div>
-        </form>
-        
         </div>
         </>
     )
