@@ -8,7 +8,7 @@ export function Home(){
         <div className="h-screen flex justify-center">
             <div className="mt-32">
                 <div className="flex flex-col justify-center items-center gap-3">
-                    <h1 className="text-4xl">Morpheus444</h1>
+                    <h1 className="text-4xl">Emílio Branquinho</h1>
                     <p className="md:text-xl flex gap-3 items-center justify-center">Veja meus links <i><CircleArrowDown/></i></p>
                 </div>
 
