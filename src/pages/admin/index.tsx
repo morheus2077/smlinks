@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
 import { Link } from 'lucide-react';
@@ -10,6 +10,11 @@ export function Admin(){
     const[NameColorInput, setNameColorInput] = useState("#f1f1f1");
     const[bgColorInput, setbgColorInput] = useState("#0000");
 
+
+    function handleRegister(e: FormEvent){
+        e.preventDefault();
+    }
+
     return(
         <>
        <Header/>
@@ -18,14 +23,14 @@ export function Admin(){
             <div className="flex flex-col px-4 lg:px-0 ">
                     <label className="pt-6" htmlFor="name">Nome do link</label>
                     <Input
-                    className="bg-white w-[330px] lg:w-[500px] h-[30px] rounded-xs indent-3 text-black mt-4"
+                    className="bg-white w-full lg:w-[500px] h-[30px] rounded-xs indent-3 text-black mt-4"
                     placeholder="Digite o nome do link:"
                     value={inputName}
                     onChange={(e) =>{setInputName(e.target.value)}}
                     />
                     <label className="pt-6" htmlFor="url">URL do link</label>
                     <Input
-                    className="bg-white w-[330px] lg:w-[500px]  h-[30px] rounded-xs indent-3 text-black mt-4"
+                    className="bg-white w-full lg:w-[500px]  h-[30px] rounded-xs indent-3 text-black mt-4"
                     placeholder="Digite a URL do link:"
                     value={inputUrl}
                     onChange={(e) =>{setInputUrl(e.target.value)}}
@@ -71,7 +76,12 @@ export function Admin(){
                 </article>
             </div>
 
-            <button className="flex items-center justify-center gap-3 bg-blue-600 w-full lg:w-full mt-2 rounded-sm h-[35px] cursor-pointer">cadastrar <i><Link size={18}/></i></button>
+            <button 
+            onClick={handleRegister}
+            className="flex items-center justify-center gap-3 bg-blue-600 w-full lg:w-full mt-2 rounded-sm h-[35px] cursor-pointer">
+            cadastrar 
+            <i><Link size={18}/></i>
+            </button>
         </form>
         </div>
         </>
