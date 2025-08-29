@@ -77,7 +77,7 @@ export function Home(){
 
     return(
         <>
-        <div className="h-screen flex justify-center">
+        <div className="h-dvh flex justify-center">
             <div className="mt-32">
                 <div className="flex flex-col justify-center items-center gap-3">
                     <h1 className="text-4xl">Emílio Branquinho</h1>
