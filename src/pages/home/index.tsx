@@ -7,11 +7,11 @@ import { db } from "../../services/firebaseConnection";
 import 
     { 
      collection,
-     onSnapshot,
      query,
      orderBy,
      doc,
-     getDoc
+     getDoc,
+     getDocs
 } from "firebase/firestore";
 
 interface LinkProps{
@@ -38,8 +38,9 @@ export function Home(){
            const linksRef = collection(db, "links");
            const queryRef = query(linksRef, orderBy("created", "desc"));
     
-           const unsub = onSnapshot(queryRef, (snapshot) => {
-             let allLinks = [] as LinkProps[];
+           getDocs(queryRef)
+           .then((snapshot) => {
+            let allLinks = [] as LinkProps[];
     
             snapshot.forEach((doc) => {
                 allLinks.push({
@@ -50,9 +51,11 @@ export function Home(){
                       bg: doc.data().bg
                 }) 
             })
-                console.log(unsub)
-              setLinksList(allLinks)
-           } )
+                setLinksList(allLinks);
+           })
+             
+               
+              
             
 
            //buscando links das redes sociais
