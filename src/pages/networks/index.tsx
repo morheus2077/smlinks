@@ -50,7 +50,7 @@ export function Networks(){
         <>
         <Header/>
         <h1 className="text-center text-3xl mt-5">Suas redes sociais</h1>
-        <div className="h-dvh flex  hyhtrkujyjustify-center ">
+        <div className="h-dvh flex  justify-center ">
         <form onSubmit={handleRegister} className="mt-5" action="">
             <div className="flex flex-col">
                 <label className="mt-2" htmlFor="facebook">Link do Facebook</label>
