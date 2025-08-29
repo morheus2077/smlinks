@@ -43,8 +43,7 @@ export function Login(){
                 </span> 
                 <i><Unlink size={40}/></i>
                 </h1>
-
-              <form onSubmit={handleSubmit} className="flex flex-col items-center gap-3 mt-5" action="">
+                <form onSubmit={handleSubmit} className="flex flex-col items-center gap-3 mt-5" action="">
                 <h1 className="text-red-600">{inputError}</h1>
                 <Input
                 type="email"
@@ -58,7 +57,6 @@ export function Login(){
                 value={passInput}
                 onChange={e => setPassInput(e.target.value)}
                 />
-
                 <Button
                 type="submit"
                 />

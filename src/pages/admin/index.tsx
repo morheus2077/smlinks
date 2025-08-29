@@ -35,6 +35,8 @@ export function Admin(){
     const[linksList, setLinksList] = useState <LinkProps[]>([])
 
     useEffect(()=>{
+
+        //buscando links da base de dados
        const linksRef = collection(db, "links");
        const queryRef = query(linksRef, orderBy("created", "asc"));
 
@@ -58,6 +60,8 @@ export function Admin(){
       
     },[]);
 
+
+    //funcao para registrar um novo link
      function handleRegister(e: FormEvent){
         e.preventDefault();
 
@@ -65,7 +69,6 @@ export function Admin(){
             alert("Preencha todos os campos");
             return;
         }
-
          addDoc(collection(db, "links"), {
             name: inputName,
             url: inputUrl,
@@ -73,7 +76,6 @@ export function Admin(){
             bg: bgColorInput,
             created: new Date()
         })
-        
         .then(()=>{
             alert("Link adicionado!");
             setInputName("");
@@ -85,6 +87,7 @@ export function Admin(){
         })
     }
 
+    //funcao para deletar link
     function handleDelete(item: string){
         deleteDoc(doc(db, "links", item))
         .then(() =>{
@@ -160,17 +163,15 @@ export function Admin(){
                     {inputName}
                     </p>
                 </article>
-            </div>
-                </>
+                </div>
+                   </>
             )}  
-
             <button 
             className="flex items-center justify-center gap-3 bg-blue-600 w-full lg:w-full mt-2 rounded-sm h-[35px] cursor-pointer lg:h-[35px] md:h-[45px] md:text-2xl lg:text-lg">
             cadastrar 
             <i><Link size={18}/></i>
             </button>
         </form>
-
         <div className="mt-8 md:text-3xl flex flex-col items-center w-[360px] md:w-[700px] lg:w-[500px]  justify-center">
                 <h1>Meus Links</h1>
                 <div className="lg:w-full mt-5 flex flex-col gap-3">
@@ -182,7 +183,7 @@ export function Admin(){
                         className="h-[35px] rounded-sm w-[330px] md:w-[600px] lg:w-full flex items-center justify-between px-5 lg:text-lg  "
                         >
                     <p
-                        style={{color: link.color}}
+                    style={{color: link.color}}
                     >
                     {link.name}
                     </p>

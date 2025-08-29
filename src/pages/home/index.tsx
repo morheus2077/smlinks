@@ -53,11 +53,7 @@ export function Home(){
             })
                 setLinksList(allLinks);
            })
-             
-               
-              
-            
-
+                
            //buscando links das redes sociais
            const socialRef = doc(db, "socialnetworks", "link");
                 getDoc(socialRef)   
@@ -71,7 +67,6 @@ export function Home(){
                         .catch((error) =>{
                             console.log(error)
                         })
-          
         },[]);
     
 
@@ -105,9 +100,7 @@ export function Home(){
                     </article>
                         </>
                     ))}
-
             </div>
-
                 <footer>
                     <div className="flex gap-10 items-center justify-center mt-3">
                         <Social url={instaLink}>
@@ -119,11 +112,8 @@ export function Home(){
                         <Social url={fbLink}>
                             <Facebook size={30}/>
                         </Social>
-                    </div>
-
-                    
+                    </div>    
                 </footer>
-
             </div>
         </div>
         </>
