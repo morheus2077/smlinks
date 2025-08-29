@@ -35,7 +35,7 @@ export function Login(){
 
     return(
         <>
-        <div className="flex items-center justify-center h-screen">
+        <div className="flex items-center justify-center h-dvh">
             <div className="flex flex-col">
                 <h1 className="flex gap-3 text-5xl justify-center">Seema
                 <span className="bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent">

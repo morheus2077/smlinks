@@ -98,7 +98,7 @@ export function Admin(){
     return(
         <>
        <Header/>
-        <div className="h-screen flex flex-col  items-center bg-[#030129]">
+        <div className="h-dvh flex flex-col items-center bg-[#030129]">
         <form onSubmit={handleRegister} className="w-[360px] md:w-[700px] lg:w-[500px] " action="">
             <div className="flex flex-col px-4 lg:px-0 ">
                     <label className="pt-6 md:text-xl lg:text-lg" htmlFor="name">Nome do link</label>
