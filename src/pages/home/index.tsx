@@ -2,8 +2,7 @@ import { useState, useEffect} from "react";
 import { Link } from "react-router";
 import { CircleArrowDown } from "lucide-react";
 import { Social } from "../../components/Social";
-import { Instagram, Github, Linkedin } from "lucide-react";
-
+import { Instagram, Github, Facebook} from "lucide-react";
 import { db } from "../../services/firebaseConnection";
 import 
     { 
@@ -11,6 +10,8 @@ import
      onSnapshot,
      query,
      orderBy,
+     doc,
+     getDoc
 } from "firebase/firestore";
 
 interface LinkProps{
@@ -27,8 +28,13 @@ export function Home(){
 
     
         const[linksList, setLinksList] = useState <LinkProps[]>([])
+        const[fbLink, setFbLink] = useState("");
+        const[instaLink, setInstaLink] = useState("");
+        const[gitLink, setGitLink] = useState("");
     
         useEffect(()=>{
+
+            //buscando os links principais
            const linksRef = collection(db, "links");
            const queryRef = query(linksRef, orderBy("created", "desc"));
     
@@ -45,10 +51,23 @@ export function Home(){
                 }) 
             })
                 console.log(unsub)
-              console.log(allLinks)
               setLinksList(allLinks)
            } )
             
+
+           //buscando links das redes sociais
+           const socialRef = doc(db, "socialnetworks", "link");
+                getDoc(socialRef)   
+                    .then((snapshot) => {
+                        if(snapshot.data() !== undefined){
+                            setFbLink(snapshot.data()?.facebook);
+                            setInstaLink(snapshot.data()?.instagram);
+                            setGitLink(snapshot.data()?.github)
+                        }
+                        })
+                        .catch((error) =>{
+                            console.log(error)
+                        })
           
         },[]);
     
@@ -88,14 +107,14 @@ export function Home(){
 
                 <footer>
                     <div className="flex gap-10 items-center justify-center mt-3">
-                        <Social url="https://www.youtube.com">
+                        <Social url={instaLink}>
                             <Instagram size={30}/>
                         </Social>
-                        <Social url="https://www.youtube.com">
+                        <Social url={gitLink}>
                             <Github size={30}/>
                         </Social>
-                        <Social url="https://www.youtube.com">
-                            <Linkedin size={30}/>
+                        <Social url={fbLink}>
+                            <Facebook size={30}/>
                         </Social>
                     </div>
 
