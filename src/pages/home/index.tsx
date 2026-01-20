@@ -87,8 +87,8 @@ export function Home(){
                     style={{background: link.bg}}
                     className="h-[35px] rounded-sm w-[330px] md:w-[600px] lg:w-[420px] flex items-center justify-center"
                     >
-                    <Link
-                    to={link.url}
+                    <a
+                    href={link.url}
                     target="_blank"
                     >
                         <p
@@ -96,7 +96,7 @@ export function Home(){
                         >
                         {link.name}
                         </p>
-                    </Link>
+                    </a>
                     </article>
                         </>
                     ))}
