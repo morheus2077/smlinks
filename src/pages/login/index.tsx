@@ -5,6 +5,7 @@ import { useState, type FormEvent } from "react";
 import {auth} from  '../../services/firebaseConnection';
 import { signInWithEmailAndPassword } from "firebase/auth/cordova";
 import { useNavigate } from "react-router";
+import toast from "react-hot-toast";
 
 export function Login(){
 
@@ -23,7 +24,7 @@ export function Login(){
 
        await signInWithEmailAndPassword(auth, emailInput, passInput)
         .then(()=>{
-            alert("Login feito com sucesso!");
+            toast.success("Bem-vindo de volta!")
             navigate('/admin', {replace: true})
         })
         .catch((error)=>{

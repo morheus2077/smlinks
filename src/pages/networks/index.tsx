@@ -5,6 +5,7 @@ import { useState } from "react";
 import { type FormEvent } from "react";
 import {db} from '../../services/firebaseConnection';
 import {doc, setDoc, getDoc} from 'firebase/firestore';
+import toast from "react-hot-toast";
 
 
 export function Networks(){
@@ -22,11 +23,11 @@ export function Networks(){
                     setInstagram(snapshot.data()?.instagram);
                     setGithub(snapshot.data()?.github)
                 }
-                  })
-                    .catch((error) =>{
-                            console.log(error)
-                        })     
-                                });
+            })
+            .catch((error) =>{
+                console.log(error)
+            })     
+        });
 
     function handleRegister(e:FormEvent){
         e.preventDefault(); 
@@ -38,7 +39,7 @@ export function Networks(){
         created: new Date()
        })
        .then(()=>{
-        alert("Cadastro feito com sucesso!");
+        toast.success("Cadastro feito com sucesso!");
        })
        .catch((error) =>{
         console.log(error);

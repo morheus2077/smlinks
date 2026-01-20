@@ -15,6 +15,7 @@ import
      deleteDoc,
      doc
 } from "firebase/firestore";
+import toast from "react-hot-toast";
 
 interface LinkProps{
     id: string,
@@ -66,7 +67,7 @@ export function Admin(){
         e.preventDefault();
 
         if(inputName === "" || inputUrl === ""){
-            alert("Preencha todos os campos");
+            toast.error("Preencha todos os campos");
             return;
         }
          addDoc(collection(db, "links"), {
@@ -77,10 +78,9 @@ export function Admin(){
             created: new Date()
         })
         .then(()=>{
-            alert("Link adicionado!");
+            toast.success("Link adicionado!");
             setInputName("");
-            setInputUrl("");
-            
+            setInputUrl("");       
         })
         .catch((err) =>{
             console.log(err)
@@ -91,7 +91,7 @@ export function Admin(){
     function handleDelete(item: string){
         deleteDoc(doc(db, "links", item))
         .then(() =>{
-            alert("Link excluido com sucesso!");
+            toast.success("Link excluido com sucesso!");
         })
         .catch((err)=>{
             console.log(err)
